@@ -1,0 +1,17 @@
+3月23日：高级经济学讲座第172期
+2017-03-21
+0
+
+　　一、报告题目
+　　Nonparametric Identification of k-Double Auctions using Price Data
+　　二、报告人
+　　黎晖晖，厦门大学王亚楠经济研究院助理教授，美国Pennsylvania State University的PhD，主要研究领域为 Econometrics，Industrial Organization, Applied Microeconomics。其研究成果发表在China Economic Journal，Economic and Social Development 等知名学术期刊。
+　　三、报告时间
+　　3月23日（周四）14:30-16:00
+　　四、报告地点
+　　中心校区知新楼B423聚贤报告厅
+　　五、报告摘要
+　　This paper studies the model identification problem of k-double auctions between one buyer and one seller when the transaction price, rather than the traders’ bids, can be observed. Given that only the price data is available, I explore an identification strategy that utilizes the double auctions with extreme pricing weight (k = 1 or 0) and exclusive covariates that shift only one trader’s value distribution to identify both the buyer’s and the seller’s value distributions nonparametrically. First, as each exclusive covariate can take at least two values, the buyer’s and the seller’s value distributions are partially identified from the price distribution for k = 1 or k = 0. The identified set is sharp and can be easily computed. I provide a set of sufficient conditions under which the traders’ value distributions are point identified. Second, when the exclusive covariates are continuous, it is shown that the buyer’s and the seller’s value distributions will be uniquely determined by a partial differential equation that only depends on the price distribution, provided that the value distributions are known for at least one value of the exclusive covariates.
+　　六、主办单位
+　　山东大学经济学院
+【作者：王永军　来自：经济学院　编辑：新闻中心总编室　责任编辑：筱恬】
