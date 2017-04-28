@@ -1,16 +1,10 @@
 # -*- coding:utf-8 -*-
-import json
-import urllib2
 import re
-import json
 
 import math
-from bs4 import BeautifulSoup
 import jieba
-import sys
 import os
 import csv
-
 # used to load csv-type data
 def loadCsv(filename):
   lines = csv.reader(open(filename, "rb"))
@@ -18,48 +12,42 @@ def loadCsv(filename):
   for i in range(len(dataset)):
     dataset[i] = [x for x in dataset[i]]
   return dataset
-
 # get the index of word
 def wordTag(word,dic):
     a=0
     for bb in dic:
         if bb[0] == word:
-            return a
+            return a,bb[2]
         a=a+1
     return -1
 
-
-def add_to_dic(seg_list,myfile):
+def build_tf(seg_list,myfile,dic):
     print "............"+myfile
-    dic = loadCsv("dic_idf.csv")
-    a=0
+    # 这两个保存词语编号以及数量
+    word_tags=[]
+    word_numbers = []
+    word_idf=[]
+    word_tf_idfs=[]
+    length=0
     for word in seg_list:
-        tag=wordTag(word.encode('utf-8'),dic)
-        if tag==-1:
-            dic.append([word.encode('utf-8'),myfile])
-            dic.sort()
-            print word
+        tag,idf=wordTag(word.encode('utf-8'),dic)
+        length=length+1
+        if tag not in word_tags:
+            word_tags.append(tag)
+            word_numbers.append(1)
+            word_idf.append(idf)
         else:
-            if myfile not in dic[tag][1]:
-                dic[tag][1]=dic[tag][1]+","+myfile
-        a=a+1
-    print a
-    csvfile = file("dic_idf.csv", 'wb')
-    writer = csv.writer(csvfile)
-    writer.writerows(dic)
+            for i in range(len(word_tags)):
+                if word_tags[i]==tag:
+                    word_numbers[i]=word_numbers[i]+1
+    for i1 in word_numbers:
+        word_tf_idfs.append(i1*1.0*float(word_idf[i1])/length)
+    dic_tf_part=[myfile,word_tags,word_tf_idfs]
+    return dic_tf_part
 
-# 计算 idf
-def get_idf(file_number):
-    dic = loadCsv("dic_idf.csv")
-    for bb in dic:
-        file_list=bb[1].split(',')
-        bb.append(math.log(file_number*1.0/len(file_list),10))
-        print bb[0]
-    csvfile = file("dic_idf.csv", 'wb')
-    writer = csv.writer(csvfile)
-    writer.writerows(dic)
 path = "test" #文件夹目录
 files= os.listdir(path) #得到文件夹下的所有文件名称
+dic_tf=[]
 for myfile in files: #遍历文件夹
      # 文件命名
      # os.rename(path+'/'+file, path+'/'+str(x)+".txt")
@@ -68,5 +56,8 @@ for myfile in files: #遍历文件夹
          data = open(path + '/' + myfile)
          content = data.read()
          seg_list = jieba.cut(content, cut_all=False)
-         add_to_dic(seg_list,myfile)
-get_idf(len(files))
+         dic = loadCsv("dic_idf.csv")
+         dic_tf.append(build_tf(seg_list, myfile,dic))
+csvfile = file("dic_tf_idfs.csv", 'wb')
+writer = csv.writer(csvfile)
+writer.writerows(dic_tf)
