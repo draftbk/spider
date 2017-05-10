@@ -85,7 +85,7 @@ def find_ranks(search_list):
 
 
 
-mysearch="审美"
+mysearch="山东大学创新"
 search_list = jieba.cut(mysearch, cut_all=False)
 # print search_list
 find_ranks(search_list)

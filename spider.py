@@ -55,6 +55,10 @@ def news(html,linkset):
         links2 = re.findall('\d{4}/\d{4}/\d*.html', html)
         links3 = re.findall('\w{3,6}/\d{1,3}.html', html)
         links4 = re.findall('new/.{3,5}/', html)
+        print links1
+        print links2
+        print links3
+        print links4
         for link in links1:
           if link not in linkset:
               linkset.add(link)
