@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import socket
 
 HOST, PORT = '', 8888
@@ -15,7 +16,7 @@ while True:
     http_response = """
 HTTP/1.1 200 OK
 
-Hello, World!
+Hello, World!爱上大好大开奖号打开简单哈哈
 """
     client_connection.sendall(http_response)
     client_connection.close()
